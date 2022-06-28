@@ -6,7 +6,7 @@ public class JDBCUtil {
     public static Connection getConnection() {
         String url = "jdbc:mysql://localhost:3306/springbook?serverTimezone=UTC";
         String user = "root";
-        String password = "dnjs07wns21";
+        String password = "password";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
