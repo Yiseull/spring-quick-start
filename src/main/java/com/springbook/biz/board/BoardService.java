@@ -1,7 +1,5 @@
 package com.springbook.biz.board;
 
-import com.springbook.biz.board.impl.BoardDAO;
-
 import java.util.List;
 
 public interface BoardService {
