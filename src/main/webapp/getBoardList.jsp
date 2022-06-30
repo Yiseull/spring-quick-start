@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -7,8 +8,8 @@
 </head>
 <body>
     <center>
-        <h1>글 목록</h1>
-        <h3>${userName}님! 게시판에 오신 걸 환영합니다...<a href="logout.do">Log-out</a></h3>
+        <h1><spring:message code="message.board.list.mainTitle"/></h1>
+        <h3>${userName}<spring:message code="message.board.list.welcomeMsg"/><a href="logout.do">Log-out</a></h3>
 
         <!-- 검색 시작 -->
         <form action="getBoardList.do" method="post">
@@ -21,7 +22,7 @@
                             </c:forEach>
                         </select>
                         <input name="searchKeyword" type="text">
-                        <input type="submit" value="검색">
+                        <input type="submit" value="<spring:message code="message.board.list.search.condition.btn"/>">
                     </td>
                 </tr>
             </table>
@@ -30,11 +31,11 @@
 
         <table border="1" cellpadding="0" cellspacing="0" width="700">
             <tr>
-                <td bgcolor="orange" width="100">번호</td>
-                <td bgcolor="orange" width="200">제목</td>
-                <td bgcolor="orange" width="150">작성자</td>
-                <td bgcolor="orange" width="150">등록일</td>
-                <td bgcolor="orange" width="100">조회수</td>
+                <td bgcolor="orange" width="100"><spring:message code="message.board.list.table.head.seq"/></td>
+                <td bgcolor="orange" width="200"><spring:message code="message.board.list.table.head.title"/></td>
+                <td bgcolor="orange" width="150"><spring:message code="message.board.list.table.head.writer"/></td>
+                <td bgcolor="orange" width="150"><spring:message code="message.board.list.table.head.regDate"/></td>
+                <td bgcolor="orange" width="100"><spring:message code="message.board.list.table.head.cnt"/></td>
             </tr>
 
             <c:forEach items="${boardList}" var="board">
@@ -48,7 +49,7 @@
             </c:forEach>
         </table>
         <br>
-        <a href="insertBoard.jsp">새 글 등록</a>
+        <a href="insertBoard.jsp"><spring:message code="message.board.list.link.insertBoard"/></a>
     </center>
 </body>
 </html>
