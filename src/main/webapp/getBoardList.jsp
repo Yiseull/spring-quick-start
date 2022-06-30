@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -43,7 +44,7 @@
                 <td>${board.seq}</td>
                 <td align="left"><a href="getBoard.do?seq=${board.seq}">${board.title}</a></td>
                 <td>${board.writer}</td>
-                <td>${board.regDate}</td>
+                <td><fmt:formatDate value="${board.regDate}" pattern="yyyy-MM-dd"/></td>
                 <td>${board.cnt}</td>
             </tr>
             </c:forEach>
