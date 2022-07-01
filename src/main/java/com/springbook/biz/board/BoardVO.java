@@ -1,30 +1,37 @@
 package com.springbook.biz.board;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.Date;
 
-
 // VO(Value Object)
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.FIELD)   // XML 변환
+@Entity
+@Table(name = "BOARD")
 public class BoardVO {
-    @XmlAttribute
+    @XmlAttribute   // XML 변환
+    @Id
+    @GeneratedValue
     private int seq;
     private String title;
     private String writer;
     private String content;
+    @Temporal(TemporalType.DATE)
     private Date regDate;
     private int cnt;
-    @XmlTransient
+    @XmlTransient   // XML 변환
+    @Transient
     private String searchCondition;
-    @XmlTransient
+    @XmlTransient   // XML 변환
+    @Transient
     private String searchKeyword;
-    @XmlTransient
+    @XmlTransient   // XML 변환
+    @Transient
     private MultipartFile uploadFile;
 
     public int getSeq() {
@@ -75,7 +82,6 @@ public class BoardVO {
         this.cnt = cnt;
     }
 
-    @JsonIgnore
     public String getSearchCondition() {
         return searchCondition;
     }
@@ -84,7 +90,6 @@ public class BoardVO {
         this.searchCondition = searchCondition;
     }
 
-    @JsonIgnore
     public String getSearchKeyword() {
         return searchKeyword;
     }
@@ -93,7 +98,6 @@ public class BoardVO {
         this.searchKeyword = searchKeyword;
     }
 
-    @JsonIgnore
     public MultipartFile getUploadFile() {
         return uploadFile;
     }
