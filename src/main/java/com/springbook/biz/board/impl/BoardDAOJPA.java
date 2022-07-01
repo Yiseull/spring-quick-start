@@ -34,6 +34,13 @@ public class BoardDAOJPA {
 
     public List<BoardVO> getBoardList(BoardVO vo) {
         System.out.println("===> JPA로 getBoardList() 기능 처리");
-        return entityManager.createQuery("from BoardVO b order by b.seq desc").getResultList();
+        String condition = "";
+        if(vo.getSearchCondition().equals("TITLE")) {
+            condition = "title";
+        } else if(vo.getSearchCondition().equals("CONTENT")) {
+            condition = "content";
+        }
+        String jpql = "select b from BoardVO b where b." + condition + " like \'%" + vo.getSearchKeyword() +"%\' order by b.seq desc";
+        return entityManager.createQuery(jpql).getResultList();
     }
 }
